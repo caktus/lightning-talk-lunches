@@ -1,0 +1,2 @@
+Sphinx==1.0.7
+phinxjp.themes.htmlslide==0.1.1

@@ -1,0 +1,103 @@
+Django-Selectable
+================================================
+
+Mark Lavin
+
+June 17, 2011
+
+.. image:: ../_static/caktus-web-logo.png
+
+
+Talk Overview
+------------------------------------------------
+
+* What is django-selectable?
+* How does it work?
+* Where is it going?
+
+
+Project Overview
+-----------------------------------------------
+
+Django-Selectable is a Django app for auto-completion widgets built on
+jQuery UI.
+
+
+Motivation
+------------------------------------------------
+
+When I started this project most if not all auto-complete apps were using
+the `bassistance jQuery auto-complete plug-in <http://bassistance.de/jquery-plugins/jquery-plug-in-auto-complete/>`_.
+In June 2010 this plug-in was deprecated in favor of jQuery UI's auto-complete plug-in.
+
+
+My Goals
+------------------------------------------------
+
+Other than just upgrading the plug-in, I had a couple goals in 
+starting this project...
+
+
+Build on Django Forms
+------------------------------------------------
+
+* No custom templates
+* No additional HTML in Python
+* No inline JS
+
+
+More than Just Basic Text
+------------------------------------------------
+
+* Foreign key selection
+    * With adding new items
+* Multiple selects
+* Combo-boxes
+
+
+Easy to Write Views
+------------------------------------------------
+
+* Simple definitions for AJAX views
+* Extendable with sane defaults
+* No large settings dictionaries
+
+
+More than Just Code
+------------------------------------------------
+
+* Good documentation
+* Working examples
+* Tests
+
+
+Did I Meet My Goals?
+------------------------------------------------
+
+* Form fields and widgets extend from built-in Django forms
+* Views are defined as lookup classes with a registration pattern
+* Documentation and working test suite
+
+
+A Working Example
+------------------------------------------------
+
+
+Can This Get More Awesome?
+------------------------------------------------
+
+Yes it can!
+
+* Additional widget types/styles
+* Improved lookup API
+* Client-side tests
+* Better documentation and examples
+
+
+Questions?
+------------------------------------------------
+
+* Code: https://bitbucket.org/mlavin/django-selectable
+* Issues: https://bitbucket.org/mlavin/django-selectable/issues
+* Documentation: http://django-selectable.readthedocs.org/
+

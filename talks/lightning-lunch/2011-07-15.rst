@@ -1,0 +1,17 @@
+Service Page API
+===================================
+
+Calvin Spealman
+
+July 15, 2011
+
+
+Pipe Dreams
+-----------------------------------
+
+* I'm submitting this for W3C consideration
+* What does it solve?
+* How does it solve it?
+* Why does it solve it?
+
+

@@ -11,6 +11,7 @@ Contents:
 .. toctree::
     :maxdepth: 2
     
+    lightning-lunch/2011-07-15
     lightning-lunch/2011-06-17
 
 

@@ -66,6 +66,7 @@ def deploy():
         run('git pull')
         run('git checkout %(code_branch)s' % env)
     update_requirements()
+    make_html()
 
 
 def update_requirements():
@@ -74,6 +75,13 @@ def update_requirements():
     cmd = ['pip install -q -E %(virtualenv_root)s' % env]
     cmd += ['--requirement %s' % posixpath.join(env.code_root, 'requirements.txt')]
     run(' '.join(cmd))
+
+
+def make_html():
+    """ build sphinx slides """
+    require('project_root', provided_by=('staging', 'production'))
+    with cd(env.project_root):
+        run('source %(virtualenv_root)s/bin/activate && make html' % env)
 
 
 def update_services():

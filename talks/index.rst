@@ -11,7 +11,7 @@ Contents:
 .. toctree::
     :maxdepth: 2
     
-    _talks/2011-06-17
+    lightning-lunch/2011-06-17
 
 
 Indices and tables

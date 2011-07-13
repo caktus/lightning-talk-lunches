@@ -1,4 +1,4 @@
 *.pyc
 *.pyo
 *~
-_build/*
+*/_build/*

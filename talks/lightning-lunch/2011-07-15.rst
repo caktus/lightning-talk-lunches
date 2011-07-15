@@ -6,22 +6,10 @@ Calvin Spealman
 July 15, 2011
 
 
-Talk Overview
------------------------------------
-
-* What does it solve?
-* How does it solve it?
-* Why does it solve it?
-
-
-(shh!)
------------------------------------
-
-(i stole my slide structure from mark!)
-
-
 Project Overview
 -----------------------------------
+
+**"What the heck are you talking about, Calvin?"**
 
 The Service Page API is a common API for extensions that can be used in
 any browser, and which can added to existing browsers as a plugin or
@@ -31,37 +19,37 @@ extension.
 Motivation
 -----------------------------------
 
-First I learned how to write Firefox extensions.
+* I learned how to write Firefox extensions
 
 
 Motivation
 -----------------------------------
 
-First I learned how to write Firefox extensions.
+* I learned how to write Firefox extensions
 
-Then, Jetpack extensions,
-
-
-Motivation
------------------------------------
-
-First I learned how to write Firefox extensions.
-
-Then, Jetpack extensions,
-
-Then, Chrome extensions.
+* Jetpack extensions
 
 
 Motivation
 -----------------------------------
 
-First I learned how to write Firefox extensions.
+* I learned how to write Firefox extensins
 
-Then, Jetpack extensions,
+* Jetpack extensions
 
-Then, Chrome extensions.
+* Chrome extensions
 
-Each one was closer to writing a web page than the last...
+
+Motivation
+-----------------------------------
+
+* I learned how to write Firefox extensions
+
+* Jetpack extensions
+
+* Chrome extensions
+
+* Each one was closer to writing a web page than the last...
 
 
 So...

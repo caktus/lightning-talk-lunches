@@ -103,6 +103,25 @@ Architecture
 * Requesting page doesn't need to know who it is talking to
 
 
+The API
+---------------------------------
+
+The offerer of a service:
+
+    servicepage.register("status_update", "http://sp.servicepage.org/status_update/");
+
+
+The API
+---------------------------------
+
+The user of a service:
+
+    servicepage.getService("status_update", use_service);
+
+    function use_service(S) {
+        S.do_update("I just used a Service Page!"); }
+
+
 My Goals
 ----------------------------------
 

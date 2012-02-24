@@ -1,0 +1,130 @@
+Selenium
+========================================
+
+Dan Poirier
+
+February 24, 2011
+
+.. image:: ../_static/caktus-web-logo.png
+
+Talk Overview
+--------------------------------------------------
+
+* What is Selenium?
+* Drivers and languages
+* Basic programming
+* Examining pages
+* Interacting
+* Experience
+
+
+What is Selenium?
+---------------------------
+
+Selenium has two parts:
+
+* Selenium IDE - a Firefox plugin to record and playback interactions with a browser
+
+* Selenium WebDriver - a library and browser tools to write programs in a variety of languages to drive browsers like a user
+
+This is about WebDriver, which is better suited to automating testing.
+
+WebDriver drivers
+---------------------------
+
+WebDriver has drivers for Firefox, IE, Chrome, Opera, iPhone, and Android.
+
+It also has a purely internal browser emulator called HTMLUnit. It's faster than most of the real browser drivers, though obviously is no good for testing browser compatibility.
+
+It has APIs for Java, C#, Python, Ruby, Perl, and PHP.  I'll just be showing Python.
+
+Basic Webdriver programming
+---------------------------
+
+Create a new instance of the Firefox driver and go to google:
+
+    driver = webdriver.Firefox()
+    driver.get("http://www.google.com")
+
+programming (cont.)
+---------------------------
+
+Enter a search and submit it:
+
+    inputElement = driver.find_element_by_name("q")
+    inputElement.send_keys("Cheese!")
+    inputElement.submit()
+
+programming, continued
+---------------------------
+
+Print the page title and quit:
+
+  |  print driver.title
+  |  driver.quit()
+
+(With drivers that start a new browser instance, like Chrome, you need .quit() or the browser instance hangs around.)
+
+Locating elements, basic
+--------------------------
+
+You can inspect the page DOM to see if you got what you wanted.  Start by locating the element. There are multiple ways to do that.
+
+  | driver.find_element_by_id('myWidget')
+  | driver.find_element_by_class_name('password_input')
+  | driver.find_element_by_tag_name('iframe')
+
+Locating elements, more sophisticated
+----------------------------------------------------
+
+Find <input> element with matching name attribute, link text, or partial link text:
+
+  | driver.find_element_by_name('cheese')
+  | driver.find_element_by_link_text('Search for cheese')
+  | driver.find_element_by_partial_link_text
+       ('cheese')
+
+You can even find elements by CSS locator, XPATH, or executing arbitrary JavaScript.
+
+Examining elements
+--------------------
+
+Once you have a reference to a page element, you can check it out:
+
+  | elt.tag_name
+  | elt.text
+  | elt.get_attribute('name')
+  | elt.is_displayed()
+  | elt.is_enabled()
+  | elt.is_selected()
+  | ...
+
+Interacting
+--------------
+
+You can type into an element, click on it, or submit a form:
+
+ | elt.clear()
+ | elt.send_keys("John Doe")
+ | elt.click()
+ | elt.submit()
+
+More
+------
+
+This is a sampling of what you can do with WebDriver.
+
+You can include any of this in a unit test. In Django 1.4, the test runner can start a server on a port that your webdriver test can interact with.
+
+My experience
+-------------
+
+One of our clients is using Selenium for some of their testing and plans to expand that in the future.
+
+I had a lot of trouble getting this to work with bank and credit card sites (I wanted to automate downloading my statements), but I suspect those are a worst case of Javascript, popups, etc.
+
+More information
+--------------------------------------------------
+
+* Documentation, downloads: http://seleniumhq.org/
+* Python bindings doc: http://selenium.googlecode.com/svn/trunk/docs/api/py/api.html

@@ -14,6 +14,8 @@ Contents:
     lightning-lunch/2011-08-19
     lightning-lunch/2011-07-15
     lightning-lunch/2011-06-17
+    lightning-lunch/2011-12-08
+    lightning-lunch/2012-02-24
 
 
 Indices and tables

@@ -1,0 +1,133 @@
+/*  
+
+!!!WARNING :: DO NOT EDIT THE css/caktus.css FILE DIRECTLY. EDIT THE less/caktus.less FILE, COMPILE LOCALLY AND COMMIT BOTH FILES. kthxbai
+
+
+Caktus styles for lightning talks use reveal.js
+================================================== */
+
+
+
+/*  Variables
+================================================== */
+
+@white: #FFFFFF;
+@black: #000000;
+@red: #FF0000;
+
+@caktusgreen: #a5e052;
+@caktusgray: #6C7A78;
+
+@light-caktusgray: #9da6a5;
+
+
+/* Mixins
+======================== */
+
+.border-radius(@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.box-shadow(@shadow: 0 5px 5px rgba(50, 50, 50, 0.8)) {
+    -webkit-box-shadow: @shadow;
+    -moz-box-shadow: @shadow;
+    box-shadow: @shadow;
+}
+
+.opacity(@opacity) {
+  opacity: @opacity / 100;
+  filter: ~"alpha(opacity=@{opacity})";
+}
+
+.clearfix {
+    *zoom: 1;
+    
+    &:before, &:after {
+        display: table;
+        content: "";
+    }
+    
+    &:after {
+        clear: both;
+    }
+}
+
+
+// Gradient mixin from Twitter bootstraps mixin.less
+#gradient {
+  .radial(@innerColor: @light-caktusgray, @outerColor: @caktusgray)  {
+    background-color: @outerColor;
+    background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(@innerColor), to(@outerColor));
+    background-image: -webkit-radial-gradient(circle, @innerColor, @outerColor);
+    background-image: -moz-radial-gradient(circle, @innerColor, @outerColor);
+    background-image: -ms-radial-gradient(circle, @innerColor, @outerColor);
+    background-image: -o-radial-gradient(circle, @innerColor, @outerColor);
+    background-repeat: no-repeat;
+  }
+}
+
+@font-face {
+    font-family: 'AmaranthRegular';
+   	src: url('../fonts/amaranth-regular-webfont.eot');
+	src: url('../fonts/amaranth-regular-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/amaranth-regular-webfont.woff') format('woff'),
+	url('../fonts/amaranth-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Sitewide styles
+======================== */
+
+body {
+	#gradient .radial;
+}
+
+.reveal { 
+	h1, h2 { 
+        font-family: 'AmaranthRegular'; 
+    }
+	a {
+		color: @caktusgreen;
+	}
+
+	a:not(.image), a:hover:not(.image) {
+		color: @caktusgreen;
+	}
+
+	.controls a.enabled {
+		color:  @caktusgreen;
+	}
+
+	.progress span {
+
+		background: @caktusgreen;
+	}
+
+	a.roll {
+		span:after {
+			background: darken(@caktusgreen, 25%);
+		}
+
+	}
+
+    .logo {
+        z-index: 30;
+        position: fixed;
+        padding: 20px;
+        left: 0;
+        bottom: 0;
+        img {
+            width: 150px;
+        }
+    }
+}
+
+
+
+
+
+
+

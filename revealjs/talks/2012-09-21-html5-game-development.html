@@ -1,0 +1,231 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>reveal.js - HTML5 Presentations</title>
+
+		<meta name="description" content="An easy to use CSS 3D slideshow tool for quickly creating good looking HTML presentations.">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+		<link rel="stylesheet" href="../css/reset.css">
+		<link rel="stylesheet" href="../css/main.css">
+		<link rel="stylesheet" href="../css/print.css" type="text/css" media="print">
+
+		<link rel="stylesheet" href="../css/caktus.css">
+		
+
+		<link rel="stylesheet" href="../lib/css/zenburn.css">
+
+	</head>
+	
+	<body>
+
+        <style>
+            #canvas-wrapper {
+                position: absolute;
+                left: 25px;
+                top: 50%;
+            }
+            #canvas {
+                margin-top: -50%;
+            }
+            pre code {
+                background-color: rgba(100, 100, 100, 0.5);
+            }
+        </style>
+        <div id=canvas-wrapper>
+            <canvas id=canvas width=500 height=500></canvas>
+        </div>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+
+			<aside class="logo">
+				<img src="../img/caktus-logo.png">
+			</aside>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>HTML5 Game Dev</h1>
+                    <h3 class=inverted>&lt;canvas&gt; tags</h3>
+                    <h3 class=inverted>fast Javascript</h3>
+                    <h3 class=inverted>and why you should care!</h3>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				
+				<section>
+					<h2>I'm gonna learn you:</h2>
+                    <ul>
+                        <li class=fragment>A prefresher course on the (not so) new &lt;canvas&gt; tag
+                        <li class=fragment>Concerns for optimizing Javascript code
+                        <li class=fragment>Design of a game engine
+                        <li class=fragment>Why this is a good exercise even if you don't want to make games
+                    </ul>
+				</section>
+
+                <section>
+                    <h1>&lt;canvas&gt;</h1>
+
+                    <p class=fragment>
+                        A blank slate to draw on. No longer limiting web pages to composing pre-created parts.
+                    </p>
+                    <b>TODO: Add one or more example outputs of canvas tools</b>
+                </section>
+
+                <section data-state=canvas-1 class=canvas-slide>
+                    <pre><code>
+                        &lt;canvas id="canvas" width=500 height=500&gt;
+                    </code></pre>
+                    <pre><code id=canvas-1-code>
+                        <span class=fragment>
+                        var c = document.getElementById('canvas');
+                        var ctx = c.getContext('2d');
+                        </span>
+                        <span class=fragment>
+                        ctx.fillStyle = "black";
+                        ctx.fillRect(0, 0, 500, 500);
+                        </span>
+                        <span class=fragment>
+                        loop(function(){
+                            ctx.fillStyle = "grey";
+                            ctx.fillRect(
+                                Math.random() * 450,
+                                Math.random() * 450,
+                                Math.random() * 50,
+                                Math.random() * 50
+                            );
+                        });
+                        </span>
+                    </code></pre>
+                </section>
+
+                <section data-state=canvas-2 class=canvas-slide>
+                    <p>Show a few examples of drawing primitives</p>
+                    <pre><code id=canvas-2-code>
+                        ctx.fillStyle = "red";
+                        ctx.fillRect(0, 0, 500, 500);
+                    </code></pre>
+                </section>
+
+                <section data-state=canvas-3 class=canvas-slide>
+                    <p>Show an image and code blitting the image into the canvas</p>
+                </scetion>
+
+                <section data-state=canvas-4 class=canvas-slide>
+                    <p>Explain the transform matrix</p>
+                </scetion>
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="../lib/js/head.min.js"></script>
+
+		<script>
+			// Load the main reveal.js script
+			head.js( '../js/reveal.js', function() {
+				// Parse the query string into a key/value object
+				var query = {};
+
+				location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+					query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+				} );
+
+				// Fires each time a new slide is activated
+				Reveal.addEventListener( 'slidechanged', function( event ) {
+					// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+				} );
+
+				Reveal.initialize({
+					// Display controls in the bottom right corner
+					controls: true,
+
+					// Display a presentation progress bar
+					progress: true,
+
+					// If true; each slide will be pushed to the browser history
+					history: true,
+
+					// Loops the presentation, defaults to false
+					loop: false,
+
+					// Flags if mouse wheel navigation should be enabled
+					mouseWheel: true,
+
+					// Apply a 3D roll to links on hover
+					rollingLinks: true,
+
+					// UI style
+					theme: query.theme || 'default', // default/neon/beige
+
+					// Transition style
+					transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+				});
+
+                var canvas = document.getElementById('canvas');
+                var ctx = canvas.getContext('2d');
+
+                function loop(func, t) {
+                    if (window.loopInterval) {
+                        window.clearInterval(window.loopInterval);
+                    }
+                    window.loopInterval = window.setInterval(func, t || 100);
+                }
+
+                function show_and_run() {
+                    if (window.loopInterval) {
+                        window.clearInterval(window.loopInterval);
+                    }
+                    window.setTimeout(function(){
+                        var slide = document.getElementsByClassName('present')[0];
+                        var code = document.getElementById(slide.getAttribute('data-state') + '-code').textContent;
+                        eval(code);
+                    }, 1000);
+                }
+
+                var canvas_slides = document.getElementsByClassName('canvas-slide');
+                for (var i=0; i < canvas_slides.length; i++) {
+                    Reveal.addEventListener(canvas_slides[i].getAttribute('data-state'), show_and_run);
+                }
+			} );
+			
+			// Load third party scripts
+			head.js( '../lib/js/classList.js' );
+			head.js( '../lib/js/highlight.js', function() {
+				// Fire off syntax highlighting for potential code samples in the slides
+				hljs.initHighlightingOnLoad();
+			} );
+
+			// If we're runnning the notes server we need to include some additional JS
+			// TODO Is there a better way to determine if we're running the notes server?
+			if( window.location.host === 'localhost:1947' ) {
+				head.js( 'socket.io/socket.io.js', 'plugin/speakernotes/client.js' );
+			}
+		</script>
+		
+	</body>
+</html>

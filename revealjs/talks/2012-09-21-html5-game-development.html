@@ -113,20 +113,197 @@
                 </section>
 
                 <section data-state=canvas-2 class=canvas-slide>
-                    <p>Show a few examples of drawing primitives</p>
                     <pre><code id=canvas-2-code>
-                        ctx.fillStyle = "red";
+                        ctx.fillStyle = "white";
                         ctx.fillRect(0, 0, 500, 500);
+                        for (i=0;i &lt; 10;i++) {
+                            ctx.lineWidth = 1+i;
+                            ctx.beginPath();
+                            ctx.moveTo(50+i*40,5);
+                            ctx.lineTo(50+i*40,450);
+                            ctx.stroke();
+                        }
+                        ctx.strokeStyle = "blue";
+                        ctx.moveTo(250, 250);
+                        ctx.beginPath();
+                        ctx.arc(150,150,200,0,2*Math.PI);
+                        ctx.stroke();
                     </code></pre>
                 </section>
 
                 <section data-state=canvas-3 class=canvas-slide>
-                    <p>Show an image and code blitting the image into the canvas</p>
-                </scetion>
+                    <pre><code id=canvas-3-code>
+                        function drawCat() {
+                            var x = Math.random() * 400;
+                            var y = Math.random() * 400;
+                            var s = Math.random() * 100;
+                            ctx.drawImage(cat, x, y, s, s);
+                            loop(drawCat);
+                        }
+                        var cat = new Image();
+                        cat.onload = drawCat;
+                        cat.src = "lime-cat.jpg";
+                    </code></pre>
+                </section>
 
                 <section data-state=canvas-4 class=canvas-slide>
-                    <p>Explain the transform matrix</p>
-                </scetion>
+                    <h3>WebGL</h3>
+                    <img src="webgl-example.jpg">
+                    <pre style="display: none;"><code id=canvas-4-code>
+                        ctx.fillStyle = "black";
+                        ctx.fillRect(0, 0, 500, 500);
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>setInterval() is no longer alone</h3>
+                    <ul>
+                        <li>setInterval() is limited
+                        <li>rate limited between 10-100ms
+                        <li>more when a tab is inactive, on some browsers
+                        <li>requestRenderFrame(callback) is just right
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>PlayNow</h1>
+                    <br />
+                    <h3 class=fragment>or, NowPlay</h3>
+                    <p class=fragment>I kept mixing them up...</p>
+                </section>
+
+                <section>
+                    <h2>Goals</h2>
+                    <br />
+                    <ul>
+                        <li class=fragment>Asset management
+                        <li class=fragment>Scene management
+                        <li class=fragment>Event dispatch
+                        <li class=fragment>Entities and Behaviors
+                        <li class=fragment>and, of course, rendering
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Assets</h2>
+                    <br />
+                    <ul>
+                        <li>Entities reference an asset by URI
+                        <li>Scene prep finds references, creates Image() objects
+                        <li>Waits for all to load before rendering
+                        <li class=fragment>Scary internal errors if you are impatient!
+                    </ul>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Scenes and Viewports</h2>
+                    </section>
+                    <section>
+                        <h2>Viewport</h2>
+                        <br />
+                        <ul class=half>
+                            <li>Viewport attaches to the canvas element
+                            <li class=fragment>Listens for input events from the DOM
+                            <li class=fragment>Tells renderer where to render
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Scene</h2>
+                        <br />
+                        <ul class=half>
+                            <li class=fragment>Scene collects entities and behaviors for one part of a game
+                            <li class=fragment>Can be swapped out
+                            <li class=fragment>One active scene per viewport
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Events</h1>
+                        <p>Ohhhh man, let me tell you about <i>events</i></p>
+                        <p class=fragment>Like, DOM events, right?</p>
+                        <p class=fragment>
+                            <img src="nelson.gif">
+                        </p>
+                    </section>
+                    <section>
+                        <h2>All on your own</h2>
+                        <ul>
+                            <li>Everything is inside a single element!
+                            <li>An element bubbling event dispatcher is useless
+                            <li>So I wrote one
+                        </ul>
+                        <img class=fragment src="frink.png">
+                    </section>
+                    <section>
+                        <h2>nowplay.events.js</h2>
+                        <pre><code>
+                            var o = {};
+                            o.__proto__ = new EventHandling();
+                            o.bind('playermove', callback);
+                            o.bind('playermove.jump', jump_callback);
+                            o.trigger('playermove');
+                            scene.propagate('key', 'player');
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Entities and Behaviors</h1>
+                    </section>
+                    <section>
+                        <h3>Behaviors</h3>
+                        <ul>
+                            <li>Behaviors act on entities with required properties
+                            <li>Force acts on entities with "position" and "velocity"
+                            <li>Behaviors can proxy events for entities
+                            <li>Behaviors tick throughout the gameplay
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Entities</h3>
+                        <ul>
+                            <li>Property bags, essentially
+                            <li>Behaviors and renderers act on them based on properties
+                            <li>Are event handlers
+                            <li>Created at the start of a scene, even if hidden
+                            <li>Recycles, rather than destroyed
+                        </ul>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>Behaviors attach to a scene
+                            <li>Entities are added to the scene
+                            <li>Behaviors monitor additions and attach to appropriate entities
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Why?</h2>
+                    <em class=fragment>Now that I've already wasted your time...</em>
+                    <ul>
+                        <li class=fragment>Exercise your skills and mind with something unfamiliar
+                        <li class=fragment>but, Near enough to find your way through
+                        <li class=fragment>Practice Javascript constraints and goals you normally don't have
+                        <li class=fragment>Bring back what you learned to every day stuff
+                        <li class=fragment>Have fun!
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Goals</h2>
+
+                    <p>Continue to develop the engine through a series of classic-style arcade games</p>
+
+                    <p>Release the engine and work on a Big Game</p>
+
+                    <p>Run a web-game development competition. PyWeek for Javascript</p>
+                </section>
+
 			</div>
 
 			<!-- The navigational controls UI -->
